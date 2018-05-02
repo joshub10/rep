@@ -9,16 +9,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class Simple{
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-	public static String main() {
-		System.out.println("------");
-		return "index111111111111111111";
+	
+	@GetMapping("/")
+	public static String main2() {
+		System.out.println("-------22");
+		return "data/index";
 	}
 	@PostMapping("/")
-	public static String main2() {
-		return "index";
+	public static String main() {
+		System.out.println("-------");
+		return "data/index";
 	}
 }
