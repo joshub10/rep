@@ -15,7 +15,7 @@ public class Simple{
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
 	public static String main() {
 		System.out.println("------");
-		return "index";
+		return "index111111111111111111";
 	}
 	@PostMapping("/")
 	public static String main2() {
