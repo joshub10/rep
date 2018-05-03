@@ -14,7 +14,7 @@ import controller.dao.proveedor.ProveedorService;
 @org.springframework.stereotype.Controller
 public class Controller {
 
-//	@Autowired
+	@Autowired
 	private ProveedorService proveedorService;
 	
 	
