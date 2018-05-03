@@ -1,13 +1,11 @@
 package controller.dao.proveedor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
-import controller.beans.Proveedor;
+import controller.beans.proveedor.Proveedor;
 
 @Service
 public class ProveedorService {
@@ -30,6 +28,22 @@ public class ProveedorService {
 		}
 		
 		return proveedors;
+	}
+
+	public boolean create(Proveedor proveedor) {
+		Proveedor ob=null;
+		
+		try {
+			ob=repository.save(proveedor);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ob != null;
+	}
+	public boolean update(Proveedor proveedor) {
+		return create(proveedor);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package controller.beans;
+package controller.beans.proveedor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
