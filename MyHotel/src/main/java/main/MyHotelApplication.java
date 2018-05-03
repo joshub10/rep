@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories("controller.dao.proveedor")
+@EnableJpaRepositories({"controller.dao.proveedor","controller.dao.producto"})
 @EntityScan("controller.beans")
-@ComponentScan(basePackages= {"controller","controller.dao","controller.beans"})
+@ComponentScan(basePackages= {"controller","controller.dao","controller.beans","controller.dao.producto","controller.dao.proveedor"})
 public class MyHotelApplication {
 
 	public static void main(String[] args) {
