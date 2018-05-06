@@ -2,6 +2,9 @@ package controller.beans;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
@@ -9,13 +12,10 @@ import java.util.List;
  * The persistent class for the fabricantes database table.
  * 
  */
-@Entity
-@Table(name="fabricantes")
-@NamedQuery(name="Fabricante.findAll", query="SELECT f FROM Fabricante f")
-public class Fabricante implements Serializable {
+@Service
+public class FabricanteT implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int id;
 
 	private String email;
@@ -24,38 +24,12 @@ public class Fabricante implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-many association to Proveedore
-	@ManyToMany
-	@JoinTable(
-		name="proveedor_fabricante"
-		, joinColumns={
-			@JoinColumn(name="id_fabricante")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="id_proveedor")
-			}
-		)
 	private List<Proveedore> proveedores;
 
-	//bi-directional many-to-one association to Producto
-	@OneToMany(mappedBy="fabricante")
 	private List<Producto> productos;
 
-	public Fabricante() {
+	public FabricanteT() {
 	}
-	
-	public Fabricante(int id, String email, String foto, String nombre, List<Proveedore> proveedores,
-			List<Producto> productos) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.foto = foto;
-		this.nombre = nombre;
-		this.proveedores = proveedores;
-		this.productos = productos;
-	}
-
-
 
 	public int getId() {
 		return this.id;
@@ -105,18 +79,15 @@ public class Fabricante implements Serializable {
 		this.productos = productos;
 	}
 
-	public Producto addProducto(Producto producto) {
-		getProductos().add(producto);
-		producto.setFabricante(this);
-
-		return producto;
-	}
-
 	public Producto removeProducto(Producto producto) {
 		getProductos().remove(producto);
 		producto.setFabricante(null);
 
 		return producto;
+	}
+	public Fabricante parseEntity() {
+		// TODO Auto-generated method stub
+		return new Fabricante(id, email, foto, nombre, proveedores, productos);
 	}
 
 }

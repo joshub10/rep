@@ -2,6 +2,9 @@ package controller.beans;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
@@ -9,39 +12,20 @@ import java.util.List;
  * The persistent class for the categorias database table.
  * 
  */
-@Entity
-@Table(name="categorias")
-@NamedQuery(name="Categoria.findAll", query="SELECT c FROM Categoria c")
-public class Categoria implements Serializable {
+@Service
+public class CategoriaT implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int id;
 
 	private String nombre;
 
-	//bi-directional many-to-many association to Clas
-	@ManyToMany(mappedBy="categorias")
 	private List<Clas> clases;
 
-	//bi-directional many-to-many association to Proveedore
-	@ManyToMany(mappedBy="categorias")
 	private List<Proveedore> proveedores;
 
-	public Categoria() {
+	public CategoriaT() {
 	}
-	
-	
-
-	public Categoria(int id, String nombre, List<Clas> clases, List<Proveedore> proveedores) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.clases = clases;
-		this.proveedores = proveedores;
-	}
-
-
 
 	public int getId() {
 		return this.id;
@@ -73,6 +57,9 @@ public class Categoria implements Serializable {
 
 	public void setProveedores(List<Proveedore> proveedores) {
 		this.proveedores = proveedores;
+	}
+	public Categoria parseEntity() {
+		return new Categoria(id, nombre, clases, proveedores);
 	}
 
 }

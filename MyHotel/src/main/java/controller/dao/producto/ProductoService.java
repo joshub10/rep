@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import controller.beans.producto.Producto;
-import controller.beans.proveedor.Proveedor;
+import controller.beans.Producto;
+import controller.beans.Proveedore;
 
 @Service
 public class ProductoService {

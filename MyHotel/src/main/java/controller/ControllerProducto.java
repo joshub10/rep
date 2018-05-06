@@ -5,8 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import controller.beans.producto.Producto;
-import controller.beans.producto.ProductoT;
+import controller.beans.Producto;
+import controller.beans.ProductoT;
 import controller.dao.producto.ProductoService;
 
 @org.springframework.stereotype.Controller

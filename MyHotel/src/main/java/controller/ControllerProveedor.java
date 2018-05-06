@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import controller.beans.proveedor.Proveedor;
-import controller.beans.proveedor.ProveedorT;
+import controller.beans.Proveedore;
+import controller.beans.ProveedorT;
 import controller.dao.proveedor.ProveedorService;
 
 @org.springframework.stereotype.Controller
@@ -25,7 +25,7 @@ public class ControllerProveedor {
 	@GetMapping("/proveedores")
 	public String proveedores(Model model) {
 		System.out.println("--------------------");
-		Iterable<Proveedor> iterable= service.getAll();
+		Iterable<Proveedore> iterable= service.getAll();
 		
 		model.addAttribute("proveedores",iterable);
 		

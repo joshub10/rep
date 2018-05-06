@@ -478,9 +478,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								<tr th:each="prod: ${iterable}">
 									<td th:text="${prod.id}"></td>
 									<td th:text="${prod.nombre}"></td>
-									<td th:text="${prod.peso}"></td>
-									<td th:text="${prod.sabor}"></td>
-									<td th:text="${prod.idProveedor.nombre}"></td>
+									<td th:text="${prod.idProveedore.nombre}"></td>
 									<td><a th:href="${prod.web}" th:text="${prod.web}"> </a>
 									</td>
 

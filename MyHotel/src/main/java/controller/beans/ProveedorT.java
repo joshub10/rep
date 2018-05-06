@@ -1,21 +1,19 @@
 package controller.beans;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-/**
- * The persistent class for the proveedores database table.
- * 
- */
-@Entity
-@Table(name="proveedores")
-@NamedQuery(name="Proveedore.findAll", query="SELECT p FROM Proveedore p")
-public class Proveedore implements Serializable {
-	private static final long serialVersionUID = 1L;
+import org.springframework.stereotype.Service;
 
-	@Id
+import controller.beans.Proveedore;
+
+@Service
+public class ProveedorT {
+
 	private int id;
 
 	private String nombre;
@@ -43,18 +41,7 @@ public class Proveedore implements Serializable {
 		)
 	private List<Categoria> categorias;
 
-	public Proveedore() {
-	}
-
-	public Proveedore(int id, String nombre, String web, List<Fabricante> fabricantes, List<Producto> productos,
-			List<Categoria> categorias) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.web = web;
-		this.fabricantes = fabricantes;
-		this.productos = productos;
-		this.categorias = categorias;
+	public ProveedorT() {
 	}
 
 	public int getId() {
@@ -97,12 +84,7 @@ public class Proveedore implements Serializable {
 		this.productos = productos;
 	}
 
-	public Producto addProducto(Producto producto) {
-		getProductos().add(producto);
-		producto.setProveedore(this);
-
-		return producto;
-	}
+	
 
 	public Producto removeProducto(Producto producto) {
 		getProductos().remove(producto);
@@ -119,4 +101,8 @@ public class Proveedore implements Serializable {
 		this.categorias = categorias;
 	}
 
+	public Proveedore parseEntity() {
+		// TODO Auto-generated method stub
+		return new Proveedore(id, nombre, web, fabricantes, productos, categorias);
+	}
 }

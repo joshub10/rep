@@ -1,7 +1,9 @@
 package controller.beans;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
@@ -9,39 +11,23 @@ import java.util.List;
  * The persistent class for the clases database table.
  * 
  */
-@Entity
-@Table(name="clases")
-@NamedQuery(name="Clas.findAll", query="SELECT c FROM Clas c")
-public class Clas implements Serializable {
+@Service
+public class ClasT implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int id;
 
 	private String nombre;
 
-	//bi-directional many-to-many association to Categoria
-	@ManyToMany
-	@JoinTable(
-		name="categorias_clase"
-		, joinColumns={
-			@JoinColumn(name="id_tipo")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="id_categoria")
-			}
-		)
 	private List<Categoria> categorias;
 
-	//bi-directional many-to-many association to Producto
-	@ManyToMany(mappedBy="clases")
 	private List<Producto> productos;
 
-	public Clas() {
+	public ClasT() {
 	}
 	
-	
-	public Clas(int id, String nombre, List<Categoria> categorias, List<Producto> productos) {
+
+	public ClasT(int id, String nombre, List<Categoria> categorias, List<Producto> productos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -82,4 +68,7 @@ public class Clas implements Serializable {
 		this.productos = productos;
 	}
 
+	public Clas parseEntity() {
+		return new Clas(id, nombre, categorias, productos);
+	}
 }

@@ -14,6 +14,8 @@ import java.util.List;
 @Table(name="productos")
 @NamedQuery(name="Producto.findAll", query="SELECT p FROM Producto p")
 public class Producto implements Serializable {
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -76,6 +78,22 @@ public class Producto implements Serializable {
 	public Producto() {
 	}
 
+	public Producto(int id, String nombre, BigDecimal precio, String web, List<Compra> compras,
+			List<ComprasUsuario> comprasUsuarios, List<Clas> clases, List<Columna> columnas, Fabricante fabricante,
+			Proveedore proveedore, List<Usuario> usuarios) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.web = web;
+		this.compras = compras;
+		this.comprasUsuarios = comprasUsuarios;
+		this.clases = clases;
+		this.columnas = columnas;
+		this.fabricante = fabricante;
+		this.proveedore = proveedore;
+		this.usuarios = usuarios;
+	}
 	public int getId() {
 		return this.id;
 	}

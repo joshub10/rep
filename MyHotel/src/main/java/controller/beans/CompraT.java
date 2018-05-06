@@ -2,50 +2,26 @@ package controller.beans;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.stereotype.Service;
+
 import java.util.Date;
 import java.util.List;
 
 
-/**
- * The persistent class for the compras database table.
- * 
- */
-@Entity
-@Table(name="compras")
-@NamedQuery(name="Compra.findAll", query="SELECT c FROM Compra c")
-public class Compra implements Serializable {
+@Service
+public class CompraT implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int id;
 
 	private String descripcion;
 
-	@Temporal(TemporalType.DATE)
 	private Date fecha;
 
-	//bi-directional many-to-many association to Producto
-	@ManyToMany
-	@JoinTable(
-		name="compras_productos"
-		, joinColumns={
-			@JoinColumn(name="id_compra")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="id_producto")
-			}
-		)
 	private List<Producto> productos;
 
-	public Compra() {
-	}
-	
-	public Compra(int id, String descripcion, Date fecha, List<Producto> productos) {
-		super();
-		this.id = id;
-		this.descripcion = descripcion;
-		this.fecha = fecha;
-		this.productos = productos;
+	public CompraT() {
 	}
 
 	public int getId() {
@@ -78,6 +54,11 @@ public class Compra implements Serializable {
 
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
+	}
+	
+	public Compra parseEntity() {
+		// TODO Auto-generated method stub
+		return new Compra(id, descripcion, fecha, productos);
 	}
 
 }

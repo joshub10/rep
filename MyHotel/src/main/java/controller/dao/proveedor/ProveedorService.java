@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import controller.beans.proveedor.Proveedor;
+import controller.beans.Proveedore;
 
 @Service
 public class ProveedorService {
@@ -17,24 +17,24 @@ public class ProveedorService {
 		super();
 	}
 	
-	public Iterable<Proveedor> getAll() {
-		Iterable<Proveedor> proveedors = new ArrayList<>();
+	public Iterable<Proveedore> getAll() {
+		Iterable<Proveedore> Proveedores = new ArrayList<>();
 		
 		try {
-			proveedors=repository.findAll();
+			Proveedores=repository.findAll();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return proveedors;
+		return Proveedores;
 	}
 
-	public boolean create(Proveedor proveedor) {
-		Proveedor ob=null;
+	public boolean create(Proveedore Proveedore) {
+		Proveedore ob=null;
 		
 		try {
-			ob=repository.save(proveedor);
+			ob=repository.save(Proveedore);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,8 +42,8 @@ public class ProveedorService {
 		
 		return ob != null;
 	}
-	public boolean update(Proveedor proveedor) {
-		return create(proveedor);
+	public boolean update(Proveedore Proveedore) {
+		return create(Proveedore);
 	}
 	
 }
