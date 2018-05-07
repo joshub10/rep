@@ -67,9 +67,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<tr th:each="prod: ${iterable}">
 									<td th:text="${prod.id}"></td>
 									<td th:text="${prod.nombre}"></td>
+<<<<<<< HEAD
 										<div th:if="${prod.fabricante} != null">
 											<td th:text="${prod.fabricante.email}"></td>
 										</div>
+=======
+									<td th:text="${prod.fabricante.nombre}"></td>
+>>>>>>> branch 'master' of https://github.com/joshub10/rep.git
 									</td>
 
 								</tr>
