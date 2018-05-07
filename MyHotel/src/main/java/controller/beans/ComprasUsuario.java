@@ -19,12 +19,12 @@ public class ComprasUsuario implements Serializable {
 
 	//bi-directional many-to-one association to Producto
 	@ManyToOne
-	@JoinColumn(name="id_compra")
+	@JoinColumn(name="id_compra", insertable=false, updatable=false)
 	private Producto producto;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
+	@JoinColumn(name="id_usuario", insertable=false, updatable=false)
 	private Usuario usuario;
 
 	public ComprasUsuario() {

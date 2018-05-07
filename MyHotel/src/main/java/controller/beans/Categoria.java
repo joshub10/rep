@@ -2,7 +2,11 @@ package controller.beans;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -21,24 +25,27 @@ public class Categoria implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-many association to Clas
-	@ManyToMany(mappedBy="categorias")
-	private List<Clas> clases;
+	@ManyToMany(mappedBy="categorias",fetch=FetchType.EAGER ,cascade=CascadeType.ALL)
+	private Set<Clas> clases=new HashSet<>();
 
 	//bi-directional many-to-many association to Proveedore
-	@ManyToMany(mappedBy="categorias")
-	private List<Proveedore> proveedores;
+	@ManyToMany(mappedBy="categorias",fetch=FetchType.EAGER)
+	private Set<Proveedore> proveedores=new HashSet<>();
 
 	public Categoria() {
+		clases=new HashSet<>();
+
+		proveedores=new HashSet<>();
 	}
 	
 	
 
-	public Categoria(int id, String nombre, List<Clas> clases, List<Proveedore> proveedores) {
+	public Categoria(int id, String nombre, Collection<Clas> clases, Collection<Proveedore> proveedores) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.clases = clases;
-		this.proveedores = proveedores;
+		this.clases = new HashSet<>(clases);
+		this.proveedores = new HashSet<>(proveedores);
 	}
 
 
@@ -59,19 +66,19 @@ public class Categoria implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Clas> getClases() {
-		return this.clases;
+	public Set<Clas> getClases() {
+		return clases == null ?  new  HashSet<>() : this.clases;
 	}
 
-	public void setClases(List<Clas> clases) {
+	public void setClases(Set<Clas> clases) {
 		this.clases = clases;
 	}
 
-	public List<Proveedore> getProveedores() {
-		return this.proveedores;
+	public Set<Proveedore> getProveedores() {
+		return proveedores == null ?  new  HashSet<>() : this.proveedores;
 	}
 
-	public void setProveedores(List<Proveedore> proveedores) {
+	public void setProveedores(Set<Proveedore> proveedores) {
 		this.proveedores = proveedores;
 	}
 
