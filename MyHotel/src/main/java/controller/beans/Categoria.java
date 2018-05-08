@@ -25,11 +25,7 @@ public class Categoria implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-many association to Clas
-<<<<<<< HEAD
 	@ManyToMany(mappedBy="categorias",fetch=FetchType.EAGER ,cascade=CascadeType.ALL)
-=======
-	@ManyToMany(mappedBy="categorias",fetch=FetchType.EAGER)
->>>>>>> branch 'master' of https://github.com/joshub10/rep.git
 	private Set<Clas> clases=new HashSet<>();
 
 	//bi-directional many-to-many association to Proveedore
