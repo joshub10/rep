@@ -38,20 +38,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											</div>
 											<div class="form-group">
 												<label for="recipient-name" class="control-label">Precio:</label>
-												<input type="number" class="form-control" id="recipient-name">
+												<input type="number" class="form-control" value="" id="recipient-name">
 												
 											</div>
 											
-											 <select id="single">
-												  <option value="volvo">Volvo</option>
-												  <option value="saab">Saab</option>
-												  <option value="mercedes">Mercedes</option>
-												  <option value="audi">Audi</option>
-												</select> 
+											 
 											<div class="form-group">
 												<label for="recipient-name" class="control-label">Categoria:</label>
 												<select name="as" class="form-control" id="select1">
-													<option th:each="type : ${session.categorias}" th:value="${type.nombre}" th:text="${type.nombre}">Wireframe</option>
+													<option th:each="type : ${session.categorias}" th:value="${type.nombre}" th:text="${type.nombre}" selected="selected"></option>
 												</select>
 											</div>
 										</form>
@@ -166,16 +161,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="col-md-1 compose-left" style="width: 100%">
 					<div class="folder widget-shadow" >
 						<ul>
-							<li class="head">Categorias <span class="badge badge-info" ><p th:text=${#lists.size(session.categorias)}></p></span></li>
+							<li class="head">Categorias <span class="badge badge-info" >
+								
+								<p th:text=${#lists.size(session.categorias)}></p>
+								
+								</span></li>
 							
 							<div th:each="it: ${session.categorias}">
 							
 								<li>
 									<a >
-										<input type="checkbox" th:text=${it.nombre}>
+										<input type="checkbox"  class="check" th:value=${it.nombre} th:text=${it.nombre}>
 										
 									</a>
 								</li>
+							<div id="a">
+							</div>
+								
 							</div>
 						</ul>
 					</div>
@@ -188,9 +190,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				
 				<div class="clearfix"> </div>
 				
+	<script>
+	/* $( ".check" ).on( "click", function() {
+		  $( "#a" ).html( $( "input:checked" ).val() + " is checked!" );
+		  console.info( $( "input:checked" ).val() + " is checked!" );
+		}); */
+		$(" input:checkbox.check").change(function() {
+		    var ischecked= $(this).is(':checked');
+		    var res;
+		    var val=$(this).val();
+		    if(!ischecked)
+		    	res =('uncheckd');
+		    else 
+		    	res =('checkd');
+		    console.info( res+" "+val );
+		    
+		    /* $.post( "/clases", { res:val } ); */
+		    
+		    var formData = { "val" : $(this).val(),
+		    				"operacion":res}
+		    $.ajax({
+				type : "POST",
 				
-
-
+				url : "categorias/clases/post",
+				data : formData,
+				dataType: 'text',
+				success : function(result) {
+					
+					console.log(result);
+				},
+				error : function(e) {
+					alert("Error!")
+					console.log("ERROR: ", e);
+				}
+				
+			});
+		    
+		    
+		});
+</script>
 				
 				
 

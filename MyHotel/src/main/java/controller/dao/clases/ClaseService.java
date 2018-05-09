@@ -1,6 +1,7 @@
 package controller.dao.clases;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,25 @@ public class ClaseService {
 		super();
 	}
 	
-	public Iterable<Clas> getAll() {
-		Iterable<Clas> Proveedores = new ArrayList<>();
+	public List<Clas> getAll() {
+		List<Clas> Proveedores = new ArrayList<>();
 		
 		try {
 			Proveedores=repository.findAll();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return Proveedores;
+	}
+	public List<Clas> getAllByCategoria(String categoria) {
+		List<Clas> Proveedores = new ArrayList<>();
+		
+		try {
+			Proveedores=repository.findAll();
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
