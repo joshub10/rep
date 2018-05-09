@@ -44,7 +44,7 @@ public class RestControllerCategoria {
 		List<Clas> it=service.getAll();
 		
 		System.out.println(" "+it);
-		return ResponseEntity.ok(new Usuario());
+		return ResponseEntity.ok(it);
 	}
 	@GetMapping(value="/post")
 	public  String getMyData2(@RequestBody Object ob) {

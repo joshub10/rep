@@ -2,6 +2,9 @@ package controller.beans;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -21,6 +24,7 @@ public class Clas implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-many association to Categoria
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 		name="categorias_clase"
@@ -34,6 +38,7 @@ public class Clas implements Serializable {
 	private List<Categoria> categorias;
 
 	//bi-directional many-to-many association to Producto
+	@JsonIgnore
 	@ManyToMany(mappedBy="clases")
 	private List<Producto> productos;
 
