@@ -16,6 +16,13 @@ import java.util.List;
 public class Producto implements Serializable {
 	
 	
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", web=" + web + ", compras="
+				+ compras + ", comprasUsuarios=" + comprasUsuarios + ", clases=" + clases + ", columnas=" + columnas
+				+ ", fabricante=" + fabricante + ", proveedore=" + proveedore + ", usuarios=" + usuarios + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id

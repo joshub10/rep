@@ -150,22 +150,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="sidebar col-xs-3">
 				<div >
-					<div class="folder widget-shadow">
-						aaljsdaljsl<br>
-						aaljsdaljsl<br>
-						aaljsdaljsl<br>
-						aaljsdaljsl<br>
-						aaljsdaljsl<br>
-						
+					
+
+					<div class="col-md-1 compose-left" style="width: 100%">
+					<div class="folder widget-shadow" >
+						<ul>
+							<li class="head">CLases Productos <span class="badge badge-info" ><p th:text=${#lists.size(session.clases)}></p></span></li>
+							
+							<div th:each="it: ${session.clases}">
+							
+								<li>
+									<a >
+										<input type="checkbox" th:text=${it.nombre}>
+										
+									</a>
+								</li>
+							</div>
+						</ul>
 					</div>
-					<div class="chat-grid widget-shadow">
-						aaljsdaljsl<br>
-						aaljsdaljsl<br>
-						aaljsdaljsl<br>
-						aaljsdaljsl<br>
-						aaljsdaljsl<br>
-						
-					</div>
+					
+				</div>
+					
 				</div>
 								
 				</div>

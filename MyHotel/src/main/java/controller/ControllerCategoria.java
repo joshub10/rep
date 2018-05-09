@@ -1,6 +1,10 @@
 package controller;
 
 
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +17,26 @@ import controller.beans.CategoriaT;
 import controller.dao.categoria.CategoriaService;
 
 @org.springframework.stereotype.Controller
-public class ControllerCategoria {
+public class ControllerCategoria implements InitializingBean{
 
 	@Autowired
 	private CategoriaService service;
 	
 	@Autowired
 	CategoriaT categoriaT;	
+	
+	private HttpSession session;
+	@Autowired
+	public ControllerCategoria(HttpSession session) {
+		this.session=session;
+	}
+
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+	
+		
+	}
 	
 	@GetMapping("/categorias")
 	public String proveedores(Model model) {
@@ -53,5 +70,9 @@ public class ControllerCategoria {
 		
 		return "web/categoriasAlta";
 	}
+
+
+
+
 
 }
