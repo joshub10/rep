@@ -38,8 +38,8 @@ public class RestControllerCategoria {
 
 	
 	@PostMapping( value="/post")
-	public @ResponseBody ResponseEntity<?> getMyData(@RequestParam("operacion") String op,@RequestParam("val") String val) {
-		System.out.println(op+" "+val);
+	public @ResponseBody ResponseEntity<?> getMyData(@RequestParam("val") String val) {
+		System.out.println(val);
 		
 		List<Clas> it=service.getAll();
 		

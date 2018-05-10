@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 <body class="cbp-spmenu-push">
 	<div th:insert="head :: head"></div>
 	<div th:insert="menu :: menu"></div>
@@ -155,7 +155,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 				</div>
 				<div class="sidebar col-xs-3">
-				<div ng-app="myApp" ng-controller="myCtrl">
+				<div >
 					
 
 					<div class="col-md-1 compose-left" style="width: 100%">
@@ -167,16 +167,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								
 								</span></li>
 							
-							<div ng-model="selected" 
-							 	ng-repeat="x in data" >
+							<div th:each="it: ${session.categorias}">
 							
 								<li>
-									<a>
-										<input type="checkbox" ng-change="actualizar()" value="{{x.nombre}}"  ng-model="x.nombre"/ >
-										{{x.nombre}}
+									<a >
+										<input type="checkbox"  class="check" th:value=${it.nombre} th:text=${it.nombre}>
+										
 									</a>
 								</li>
-							
+							<div id="a">
+							</div>
 								
 							</div>
 						</ul>
@@ -191,36 +191,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="clearfix"> </div>
 				
 	<script>
-	var app = angular.module('myApp', []);
-	app.controller('myCtrl', function($scope, $http) {
-	    
-	    
-	    $scope.myF = function() {
-	        
-	       	$scope.reducir();
-	    }
-	    $scope.reducir = function() {
-	       
-	    }
-	    var formData = {val:2};
-	    $scope.actualizar = function() {
-	       
-		   
-		    $http({
-		        url: 'categorias/clases/post',
-		        method: "POST",
-		        params: formData
-		        }).then(
-		    			function(response) {
-		   				 console.info("OK: "+response.data);
-		   				 $scope.data=response.data;
-		   			},function(response) {
-		   				alert( "failure message: " + response);
-		   			});
-	    }
-	    $scope.actualizar();
-	   
-	});
+	/* $( ".check" ).on( "click", function() {
+		  $( "#a" ).html( $( "input:checked" ).val() + " is checked!" );
+		  console.info( $( "input:checked" ).val() + " is checked!" );
+		}); */
+		$(" input:checkbox.check").change(function() {
+		    var ischecked= $(this).is(':checked');
+		    var res;
+		    var val=$(this).val();
+		    if(!ischecked)
+		    	res =('uncheckd');
+		    else 
+		    	res =('checkd');
+		    console.info( res+" "+val );
+		    
+		    /* $.post( "/clases", { res:val } ); */
+		    
+		    var formData = { "val" : $(this).val(),
+		    				"operacion":res}
+		    $.ajax({
+				type : "POST",
+				
+				url : "categorias/clases/post",
+				data : formData,
+				dataType: 'text',
+				success : function(result) {
+					
+					console.log(result);
+				},
+				error : function(e) {
+					alert("Error!")
+					console.log("ERROR: ", e);
+				}
+				
+			});
+		    
+		    
+		});
 </script>
 				
 				
